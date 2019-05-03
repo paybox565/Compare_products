@@ -1,0 +1,41 @@
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">Tariff name</th>
+    <th scope="col">Annual costs (€/year)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr
+          *ngFor="let item of tariffs; index as i;"
+          (click)="onSelect(item)"
+          [class.selected]="item === selectedTariff">
+    <th scope="row">{{item.name}}</th>
+    <td>{{item.annualCost}}</td>
+  </tr>
+  </tbody>
+</table>
+
+<div *ngIf="selectedTariff">
+  <h2>{{selectedTariff.name}} tariff details</h2>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Type</th>
+      <th scope="col">Base cost per month</th>
+      <th scope="col">Consumption cost</th>
+      <th scope="col">Limit (for package)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th scope="row">{{selectedTariff.name}}</th>
+      <td>{{selectedTariff.type}}</td>
+      <td>{{selectedTariff.baseCost}} €</td>
+      <td>{{selectedTariff.consumptionCost}} cent/kWh </td>
+      <td>{{selectedTariff.limit}} <span *ngIf="selectedTariff.limit">kWh</span></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
